@@ -7,10 +7,8 @@ package com.mycompany.microsoft;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 public class BestSolution {
 
     public static List<Trade> profitableTrades(List<Stock> stocks, Integer desirableProfit) {
-        Set<Trade> result = new HashSet<>();
+        List<Trade> result = new ArrayList<>();
         Map<Integer, List<Stock>> complements = new HashMap<>();
         for (Stock stock : stocks) {
             Integer complement = desirableProfit - stock.getProfit();
@@ -28,14 +26,12 @@ public class BestSolution {
                 complements.put(complement, new ArrayList<>());
             }
             complements.get(complement).add(stock);
-        }
-        for (Stock stock : stocks) {
             List<Stock> stocksToTrade = complements.get(stock.getProfit());
-            List<Trade> trades = stocksToTrade.stream().map(stockToTrade -> new Trade(stock.ticker, stockToTrade.ticker)).collect(Collectors.toList());
-            result.addAll(trades);
+            if (stocksToTrade != null) {
+                List<Trade> trades = stocksToTrade.stream().map(stockToTrade -> new Trade(stock.ticker, stockToTrade.ticker)).collect(Collectors.toList());
+                result.addAll(trades);
+            }
         }
-
-        return new ArrayList<>(result);
+        return result;
     }
-
 }
