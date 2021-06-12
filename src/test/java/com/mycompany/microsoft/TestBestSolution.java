@@ -55,8 +55,8 @@ public class TestBestSolution {
         Assert.assertEquals(testResult.get(0), result.get(0));
         Assert.assertEquals(testResult.get(1), result.get(1));
     }
-    
-     @Test
+
+    @Test
     public void test3() {
         List<Stock> stocks = new ArrayList();
         Stock stock1 = new Stock("X", 1, 5);
