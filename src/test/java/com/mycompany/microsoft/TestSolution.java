@@ -84,4 +84,32 @@ public class TestSolution {
         Assert.assertEquals(testResult.get(3), result.get(3));
     }
 
+    @Test
+    public void test4() {
+        List<Stock> stocks = new ArrayList();
+        Stock stock1 = new Stock("W", 1, 2);
+        Stock stock2 = new Stock("X", 1, 2);
+        Stock stock3 = new Stock("Y", 1, 2);
+        Stock stock4 = new Stock("Z", 1, 2);
+        stocks.add(stock1);
+        stocks.add(stock2);
+        stocks.add(stock3);
+        stocks.add(stock4);
+        List<Trade> testResult = new ArrayList();
+        testResult.add(new Trade(stock1.ticker, stock2.ticker));
+        testResult.add(new Trade(stock1.ticker, stock3.ticker));
+        testResult.add(new Trade(stock2.ticker, stock3.ticker));
+        testResult.add(new Trade(stock1.ticker, stock4.ticker));
+        testResult.add(new Trade(stock2.ticker, stock4.ticker));
+        testResult.add(new Trade(stock3.ticker, stock4.ticker));
+        List<Trade> result = Solution.profitableTrades(stocks, 2);
+        System.out.println(result);
+        Assert.assertTrue(testResult.contains(result.get(0)));
+        Assert.assertTrue(testResult.contains(result.get(1)));
+        Assert.assertTrue(testResult.contains(result.get(2)));
+        Assert.assertTrue(testResult.contains(result.get(3)));
+        Assert.assertTrue(testResult.contains(result.get(4)));
+        Assert.assertTrue(testResult.contains(result.get(5)));
+    }
+
 }

@@ -51,5 +51,11 @@ public class Stock {
         }
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "ticker='" + ticker + '\'' +
+                '}';
+    }
 }
